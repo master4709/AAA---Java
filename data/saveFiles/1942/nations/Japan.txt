@@ -1,0 +1,6 @@
+position: 4
+color: orange
+bank: 56
+income: 28
+research 1: false false false false false false 
+research 1: false false false false false false 

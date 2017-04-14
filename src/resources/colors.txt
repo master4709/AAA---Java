@@ -1,0 +1,15 @@
+red
+orange
+yellow
+pink
+purple
+blue
+blue_light
+green
+green_light
+brown
+tan_dark
+tan
+white
+grey
+black

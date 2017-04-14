@@ -1,0 +1,12 @@
+1 Heavy Artillery
+2 Rockets
+3 Jet Fighters
+4 Long-Range Aircraft
+5 War Bonds
+6 Blitz Tactics
+7 Super Submarines
+8 Anti-Aircraft Radar
+9 Imporved Shipyards
+10 Mass Production
+11 Super Carrier Decks
+12 Heavy Bombers

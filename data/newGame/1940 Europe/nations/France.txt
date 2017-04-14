@@ -1,0 +1,6 @@
+position: 6
+color: blue
+bank: 17
+income: 17
+obj: research_1: false false false false false false
+obj: research_2: false false false false false false
