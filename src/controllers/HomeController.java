@@ -27,12 +27,14 @@ public class HomeController implements ActionListener{
 	private ContinuePanel cp;
 	private NewPanel np;
 	private CreateGamePanel cgp;
+	private CreateObjectivesPanel cop;
 	private AboutPanel ap;
 	
 	private JPanel panelHome;
 	private JPanel panelContinue;
 	private JPanel panelNew;
 	private JPanel panelCreateGame;
+	private JPanel panelCreateObjectives;
 	private JPanel panelAbout;
 	
 	private int selection;
@@ -54,12 +56,14 @@ public class HomeController implements ActionListener{
 		cp = new ContinuePanel(this,this.globalListener);
 		np = new NewPanel(this,this.globalListener);
 		cgp = new CreateGamePanel(this);
+		cop = new CreateObjectivesPanel(this);
 		ap = new AboutPanel(this);
 		
 		panelHome = hp.getContentPane();
 		panelNew = np.getContentPane();
 		panelContinue = cp.getContentPane();
 		panelCreateGame = cgp.getContentPane();
+		panelCreateObjectives = cop.getContentPane();
 		panelAbout = ap.getContentPane();
 		
 		nationTotal = 0;
@@ -152,39 +156,50 @@ public class HomeController implements ActionListener{
 			selection=-1;
 			switchPanel(panelHome);
 			break;
-		case"Add":
+		case"Add_CreateGame":
 			nationTotal++;
 			cgp.createNation(nationTotal);
 			frame.repaint();
 			break;
-		case"Remove":
-			nationTotal--;
-			if(nationTotal<0){
-				nationTotal=0;
-			}else{
-				cgp.removeNation();
-			}
-			
-			frame.repaint();
-			break;
-		case"Reset":
+		case"Reset_CreateGame":
 			nationTotal = 0;
 			cgp.reset();
 			frame.repaint();
+			frame.validate();
+			break;
+		case"Add_CreateObjectives":
+			break;
+		case"Back_CreateObjectives":
+			switchPanel(panelCreateGame);
+			break;
+		case"Reset_ObjectiveCreate":
 			break;
 		default:
-			if(name.contains("New")){
+			if(name.contains("New_")){
 				selection = Integer.parseInt(name.substring(4, name.length()));
 				np.setBtnSelected(selection);
 				loadFolder = source.getText();
-			}else if(name.contains("Continue")){
+			}else if(name.contains("Continue_")){
 				selection = Integer.parseInt(name.substring(9, name.length()));
 				cp.setBtnSelected(selection);
 				loadFolder = source.getText();
-			}else if(name.contains("Objective")){
-				System.out.println(name);
+			}else if(name.contains("Objective_")){
+				selection = Integer.parseInt(name.substring(10, name.length()));
+				cop.setNationName(cgp.getNName(selection), cgp.getNColor(selection));
+				switchPanel(panelCreateObjectives);
+			}else if(name.contains("Remove_CreateGame_")){
+				nationTotal--;
+				if (nationTotal == -1){
+					nationTotal = 0;
+				}else{
+					selection = Integer.parseInt(name.substring(18, name.length()));
+					System.out.println("Nation Removed: " +(selection));
+					System.out.println("Nation Total: " +(nationTotal));
+					cgp.removeNation(selection);
+					frame.validate();
+					frame.repaint();
+				}
 			}
-			
 			break;
 		}
 	}

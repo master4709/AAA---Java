@@ -25,6 +25,10 @@ public class MyButton extends JButton{
 	public MyButton(ImageIcon icon){
 		setIcon(icon);
 		setBorder(MyPanel.emptyBorder);
+		setBorderPainted(false); 
+		setContentAreaFilled(false); 
+		setFocusPainted(false); 
+		setOpaque(false);
 	}
 	
 	public MyButton(int i){

@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 
-public class MyPanel{
+public abstract class MyPanel{
 
 	protected ActionListener packageListener;
 	
