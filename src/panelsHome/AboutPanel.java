@@ -14,7 +14,7 @@ public class AboutPanel extends MyPanel{
 	
 	public AboutPanel(ActionListener packageListener){
 		this.packageListener = packageListener;
-		contentPane.setName("AboutPanel");
+		contentPane.setName("About");
 		
 		displayNorth();
 		displaySouth();

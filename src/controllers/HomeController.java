@@ -24,15 +24,15 @@ public class HomeController implements ActionListener{
 	private ActionListener globalListener;
 	
 	private HomePanel hp;
-	private ContinuePanel cp;
-	private NewPanel np;
+	private LoadGamePanel lgp;
+	private NewGamePanel ngp;
 	private CreateGamePanel cgp;
 	private CreateObjectivesPanel cop;
 	private AboutPanel ap;
 	
 	private JPanel panelHome;
-	private JPanel panelContinue;
-	private JPanel panelNew;
+	private JPanel panelLoadGame;
+	private JPanel panelNewGame;
 	private JPanel panelCreateGame;
 	private JPanel panelCreateObjectives;
 	private JPanel panelAbout;
@@ -53,15 +53,15 @@ public class HomeController implements ActionListener{
 		setFrameBounds();
 		
 		hp = new HomePanel(this);
-		cp = new ContinuePanel(this,this.globalListener);
-		np = new NewPanel(this,this.globalListener);
+		lgp = new LoadGamePanel(this,this.globalListener);
+		ngp = new NewGamePanel(this,this.globalListener);
 		cgp = new CreateGamePanel(this);
 		cop = new CreateObjectivesPanel(this);
 		ap = new AboutPanel(this);
 		
 		panelHome = hp.getContentPane();
-		panelNew = np.getContentPane();
-		panelContinue = cp.getContentPane();
+		panelNewGame = ngp.getContentPane();
+		panelLoadGame = lgp.getContentPane();
 		panelCreateGame = cgp.getContentPane();
 		panelCreateObjectives = cop.getContentPane();
 		panelAbout = ap.getContentPane();
@@ -69,6 +69,7 @@ public class HomeController implements ActionListener{
 		nationTotal = 0;
 		
 		cgp.createNation(nationTotal);
+		cop.addNObjective();
 		switchPanel(panelHome);
 		
 	}
@@ -81,15 +82,15 @@ public class HomeController implements ActionListener{
 	}
 	
 	private void switchNewPanel(){
-		np.clear();
-		np.displayCenter(folders("data/newGame"));
-		switchPanel(panelNew);
+		ngp.clear();
+		ngp.displayCenter(folders("data/newGame"));
+		switchPanel(panelNewGame);
 	}
 	
 	private void switchContinuePanel(){
-		cp.clear();
-		cp.displayCenter(folders("data/saveFiles"));
-		switchPanel(panelContinue);
+		lgp.clear();
+		lgp.displayCenter(folders("data/saveFiles"));
+		switchPanel(panelLoadGame);
 	}
 	
 	private void switchPanel(JPanel panel){
@@ -108,7 +109,7 @@ public class HomeController implements ActionListener{
 	}
 	
 	public String getNewGameInput(){
-		return np.getInput();
+		return ngp.getInput();
 	}
 	
 	public String getGameFolder(){
@@ -116,7 +117,7 @@ public class HomeController implements ActionListener{
 	}
 	
 	public void resetButtons(){
-		cp.setBtnSelected(-1);;
+		lgp.setBtnSelected(-1);;
 	}
 	/**
 	 * Finds all of the files (folders) in the specific direcotry
@@ -159,13 +160,13 @@ public class HomeController implements ActionListener{
 		case"Add_CreateGame":
 			nationTotal++;
 			cgp.createNation(nationTotal);
+			cop.addNObjective();
 			frame.repaint();
 			break;
 		case"Reset_CreateGame":
 			nationTotal = 0;
 			cgp.reset();
 			frame.repaint();
-			frame.validate();
 			break;
 		case"Add_CreateObjectives":
 			break;
@@ -175,17 +176,17 @@ public class HomeController implements ActionListener{
 		case"Reset_ObjectiveCreate":
 			break;
 		default:
-			if(name.contains("New_")){
-				selection = Integer.parseInt(name.substring(4, name.length()));
-				np.setBtnSelected(selection);
+			if(name.contains("NewGame_")){
+				selection = Integer.parseInt(name.substring(8, name.length()));
+				ngp.setBtnSelected(selection);
 				loadFolder = source.getText();
-			}else if(name.contains("Continue_")){
-				selection = Integer.parseInt(name.substring(9, name.length()));
-				cp.setBtnSelected(selection);
+			}else if(name.contains("ContinueGame_")){
+				selection = Integer.parseInt(name.substring(13, name.length()));
+				lgp.setBtnSelected(selection);
 				loadFolder = source.getText();
 			}else if(name.contains("Objective_")){
 				selection = Integer.parseInt(name.substring(10, name.length()));
-				cop.setNationName(cgp.getNName(selection), cgp.getNColor(selection));
+				cop.setNation(cgp.getNName(selection), cgp.getNColor(selection), selection);
 				switchPanel(panelCreateObjectives);
 			}else if(name.contains("Remove_CreateGame_")){
 				nationTotal--;
@@ -196,9 +197,12 @@ public class HomeController implements ActionListener{
 					System.out.println("Nation Removed: " +(selection));
 					System.out.println("Nation Total: " +(nationTotal));
 					cgp.removeNation(selection);
+					cop.removeNObjective(selection);
 					frame.validate();
 					frame.repaint();
 				}
+			}else if(name.contains("Remove_CreateObjectives")){
+				
 			}
 			break;
 		}

@@ -120,26 +120,4 @@ public abstract class MyPanel{
 	public static int getScreenHeight(){
 		return screenHeight;
 	}
-	
-	/**
-	 * Sets the font size for the current lbl or button
-	 * Ensures that the button does not proceed the size of the screen
-	 * @param text - String displayed on lbl or button
-	 * @param maxSize - Maximum Int size for the lbl or button
-	 * @param maxWidth - Int value of space from edge of screen for text
-	 * @return int -  value of font size for lbl or button
-	 */
-	protected static int setFontSize(String text, int maxSize, int maxWidth){
-		int font = 5;
-		
-		AffineTransform affinetransform = new AffineTransform();
-		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
-		int textWidth = (int)(new MyFont(font).getStringBounds(text, frc).getWidth());
-		
-		while(textWidth<maxWidth && font<maxSize){
-			font++;
-			textWidth = (int)(new MyFont(font).getStringBounds(text, frc).getWidth());
-		}
-		return font;
-	}
 }

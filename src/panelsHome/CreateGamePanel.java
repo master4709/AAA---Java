@@ -49,14 +49,13 @@ public class CreateGamePanel extends MyPanel{
 	
 	private List<Color> possibleColors = new ArrayList<>();
 	private List<String> possibleColorsString = new ArrayList<>();
-	private List<List<Objective>> objectives = new ArrayList<>();
 	
 	private Map<Color, String> colorMap = new HashMap<Color, String>();
 	
 	
 	public CreateGamePanel(ActionListener packageListener){
 		this.packageListener = packageListener;
-		contentPane.setName("AboutPanel");
+		contentPane.setName("Create Game");
 		
 		findColors();
 		
@@ -119,7 +118,7 @@ public class CreateGamePanel extends MyPanel{
 		btnRemove.addActionListener(packageListener);
 		remove.add(btnRemove);
 		
-		txtName = new MyTextField("Nation "+position, unitFontSize);
+		txtName = new MyTextField("Nation "+yPosition, unitFontSize);
 		center.add(txtName,"cell 1 "+yPosition+",");
 		txtName.setColumns(7);
 		txtName.setName("Name_"+position);
@@ -145,9 +144,6 @@ public class CreateGamePanel extends MyPanel{
 		btnObjective.setName("Objective_"+position);
 		btnObjective.addActionListener(packageListener);
 		objectivesBtns.add(btnObjective);
-		
-		List<Objective> o = new ArrayList<>();
-		objectives.add(o);
 		if(position!=9){
 			center.add(btnAdd,"cell 0 "+(names.size()+1));
 		}else{
@@ -184,7 +180,6 @@ public class CreateGamePanel extends MyPanel{
 		income.remove(position);
 		colors.remove(position);
 		objectivesBtns.remove(position);
-		objectives.remove(position);
 		
 		for(int i=position;i<names.size();i++){
 			remove.get(i).setName("Remove_CreateGame_"+i);
@@ -241,10 +236,6 @@ public class CreateGamePanel extends MyPanel{
 			c = null;
 		}
 		return c;
-	}
-	
-	public List<Objective> getNObjective(int nation){
-		return objectives.get(nation);
 	}
 	
 	public String getNName(int nation){

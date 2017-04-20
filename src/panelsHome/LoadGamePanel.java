@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class ContinuePanel extends MyPanel{
+public class LoadGamePanel extends MyPanel{
 	
 	private ActionListener globalListener;
 	
@@ -18,10 +18,10 @@ public class ContinuePanel extends MyPanel{
 	private JButton btnContinue;
 	private List<JButton> loadFolders = new ArrayList<>();
 	
-	public ContinuePanel(ActionListener packageListener, ActionListener globalListener){
+	public LoadGamePanel(ActionListener packageListener, ActionListener globalListener){
 		this.globalListener = globalListener;
 		this.packageListener = packageListener;
-		contentPane.setName("LoadPanel");
+		contentPane.setName("Load Game");
 		displayNorth();
 		displaySouth();
 	}
@@ -33,14 +33,15 @@ public class ContinuePanel extends MyPanel{
 	}
 	
 	public void displayCenter(List<String> folders){
-		center.setLayout(new MigLayout("", "[250][250][250]", "[]"));
+		int buttonSize = getScreenWidth();
+		center.setLayout(new MigLayout("", "["+buttonSize+"]", "[]"));
 		int y =0;
 		int position=0;
 		int x = 0;
 		for(String s: folders){
-			JButton btn = new MyButton(s,btnFontSize*3/4);
+			JButton btn = new MyButton(s,btnFontSize*3/5);
 			center.add(btn,"cell "+x+" "+y+",growx");
-			btn.setName("Continue_"+position);
+			btn.setName("LoadGame_"+position);
 			btn.addActionListener(packageListener);
 			loadFolders.add(btn);
 			x++;

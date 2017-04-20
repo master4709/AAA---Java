@@ -26,7 +26,7 @@ public class HomePanel extends MyPanel{
 	
 	public HomePanel(ActionListener packageListener){
 		this.packageListener = packageListener;
-		contentPane.setName("MainPanel");
+		contentPane.setName("Home");
 		
 		displayNorth();
 		displayCenter();
@@ -49,7 +49,7 @@ public class HomePanel extends MyPanel{
 		btnNewGame.setName("NewGame");
 		btnNewGame.addActionListener(packageListener);
 		
-		btnContinueGame = new MyButton("Continue Game", btnFontSize);
+		btnContinueGame = new MyButton("Load Game", btnFontSize);
 		center.add(btnContinueGame,"cell 1 1,growx");
 		btnContinueGame.setName("ContinueGame");
 		btnContinueGame.addActionListener(packageListener);

@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class NewPanel extends MyPanel{
+public class NewGamePanel extends MyPanel{
 
 	private ActionListener globalListener;
 	
@@ -24,10 +24,10 @@ public class NewPanel extends MyPanel{
 	private List<JButton> saveFolders = new ArrayList<>();
 	
 	
-	public NewPanel(ActionListener packageListener, ActionListener globalListener){
+	public NewGamePanel(ActionListener packageListener, ActionListener globalListener){
 		this.packageListener = packageListener;
 		this.globalListener = globalListener;
-		contentPane.setName("NewPanel");
+		contentPane.setName("New Game");
 		
 		displayNorth();
 		displaySouth();
@@ -40,14 +40,15 @@ public class NewPanel extends MyPanel{
 	}
 	
 	public void displayCenter(List<String> folders){
-		center.setLayout(new MigLayout("", "[250][250][250]", "[]"));
+		int buttonSize = getScreenWidth();
+		center.setLayout(new MigLayout("", "["+buttonSize+"]", "[]"));
 		int y =0;
 		int position=0;
 		int x = 0;
 		for(String s: folders){
-			JButton btn = new MyButton(s,btnFontSize*3/4);
+			JButton btn = new MyButton(s,btnFontSize*3/5);
 			center.add(btn,"cell "+x+" "+y+",growx");
-			btn.setName("New_"+position);
+			btn.setName("NewGame_"+position);
 			btn.addActionListener(packageListener);
 			saveFolders.add(btn);
 			x++;

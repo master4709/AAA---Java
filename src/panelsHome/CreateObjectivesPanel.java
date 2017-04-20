@@ -1,11 +1,14 @@
 package panelsHome;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import myJStuff.*;
+import storage.Objective;
 
 public class CreateObjectivesPanel extends MyPanel{
 	
@@ -13,10 +16,14 @@ public class CreateObjectivesPanel extends MyPanel{
 	
 	private JButton btnBack;
 	private JButton btnReset;
+
+	private List<List<Objective>> objectives = new ArrayList<List<Objective>>();
+	
+	int position;
 	
 	public CreateObjectivesPanel(ActionListener packageListener){
 		this.packageListener = packageListener;
-		contentPane.setName("CreateObjectives Panel");
+		contentPane.setName("Create Objectives");
 		displayNorth();
 		displaySouth();
 	}
@@ -38,10 +45,36 @@ public class CreateObjectivesPanel extends MyPanel{
 		btnReset.addActionListener(packageListener);
 	}
 	
+	private void displayObjectives(){
+		List<Objective> obj = objectives.get(position);
+		for(Objective o: obj){
+			
+		}
+	}
 	
-	public void setNationName(String name, Color c){
-		lblNation.setText(name);
+	
+	public void setNation(String name, Color c, int position){
+		this.position = position;
+		lblNation.setText("Objectives: "+name);
 		lblNation.setForeground(c);
+		displayObjectives();
+	}
+	
+	public void resetNObjectives(){
+	//	objectives.get(position)
+	}
+	
+	public void addNObjective(){
+		List<Objective> o = new ArrayList<>();
+		objectives.add(o);
+	}
+	
+	public void removeNObjective(int position){
+		objectives.remove(position);
+	}
+	
+	public List<List<Objective>> getNObjectives(){
+		return objectives;
 	}
 }
    

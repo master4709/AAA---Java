@@ -50,12 +50,6 @@ public class MyButton extends JButton{
 		
 	}
 	
-	public MyButton(String text, int maxSize, int edgeDistance){
-		setText(text);
-		setFont(new MyFont(MyPanel.setFontSize(text, maxSize, edgeDistance)));
-		defaultButton();
-	}
-	
 	private void defaultButton(){
 		setForeground(Colors.btnForegroundColor);
 		setBackground(Colors.btnBackgroundColor);
