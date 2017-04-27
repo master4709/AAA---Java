@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.AffineTransform;
 
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -15,6 +13,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
+import util.ColorUtil;
 
 public abstract class MyPanel{
 
@@ -38,9 +37,9 @@ public abstract class MyPanel{
 	
 	protected final String source = "src/resources/";
 	
-	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private static final int screenWidth = (int) screenSize.getWidth();
-	private static final int screenHeight = (int) screenSize.getHeight();
+	protected static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	protected static final int screenWidth = (int) screenSize.getWidth();
+	protected static final int screenHeight = (int) screenSize.getHeight();
 
 	public MyPanel(){
 		
@@ -56,15 +55,15 @@ public abstract class MyPanel{
 		//These panels are what all JLabels, buttons etc. are added to
 		north = new JPanel();
 		contentPane.add(north, BorderLayout.NORTH);
-		north.setLayout(new MigLayout("gapy 1", "[grow,center]", "[]0[]"));
+		north.setLayout(new MigLayout("insets 0,gapy 0,gapx 0", "[grow,center]", "[]0[]"));
 		
 		west = new JPanel();
 		contentPane.add(west, BorderLayout.WEST);
-		west.setLayout(new MigLayout("gapy 1","",""));
+		west.setLayout(new MigLayout("insets 0,gapy 0","[]",""));
 		
 		east = new JPanel();
 		contentPane.add(east, BorderLayout.EAST);
-		east.setLayout(new MigLayout("gapy 1","",""));
+		east.setLayout(new MigLayout("insets 0,gapy 0","",""));
 		
 		center = new JPanel();
 		contentPane.add(center, BorderLayout.CENTER);
@@ -75,14 +74,14 @@ public abstract class MyPanel{
 		south.setLayout(new MigLayout("gapy 1", "[][][grow]", "[]0[]"));
 		
 		//Once panels are set, background color is then set
-		setMainBackground(Colors.backgroundColor);
+		setMainBackground(ColorUtil.backgroundColor);
 	}
 	
 	// Default sizes for certain font templates
 	private void setFont(){
-		nationFontSize = 70;
-		nationInfoFontSize = 50;
-		unitFontSize = 20;
+		nationFontSize = 80;
+		nationInfoFontSize = 60;
+		unitFontSize = 25;
 		btnFontSize = 40;
 	}
 	
@@ -107,6 +106,10 @@ public abstract class MyPanel{
 		} catch (Exception e) {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
+	}
+	
+	public static String convertToMultiline(String orig){
+		return "<html>" + orig.replaceAll("\n", "<br>");
 	}
 	
 	public JPanel getContentPane(){

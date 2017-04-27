@@ -2,8 +2,7 @@ position: 4
 color: green
 bank: 45
 income: 45
-research_1: false false false false false false
-research_2: false false false false false false
+research_1: false false false false false false false false false false false false
 obj: false 10 U.S.A controls : Eastern United States, Central United States, Western United States
 obj: false 5 U.S.A. controls: Alaska, Aleutian Islands, Hawaiian Islands, Johnston Island, and Line Islands
 obj: false 5 U.S.A. controls: Mexicom South Eastern Mexico, Central America, and West Indies

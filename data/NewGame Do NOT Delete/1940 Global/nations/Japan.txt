@@ -1,0 +1,12 @@
+position: 3
+color: orange
+bank: 26
+income: 26
+research_1: false false false false false false
+research_2: false false false false false false
+obj: false 10 Peace with the U.S.A. and no unprovoked attacks on Britain, ANZAC or Feench Indo-China
+obj: false 5 Axis control: Guam, Midway, Wake Island, Gilbert Islands, and Solomon Islands
+obj: false 5 Axis control: Sumatra, Java, Borneo, and Celebs
+obj: false 5 Axis control India (Calcutta)
+obj: false 5 Axis control New South Wales (Sydney)
+obj: false 5 Axis control Hawaiian Islands (Honolulu)

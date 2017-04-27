@@ -34,22 +34,17 @@ public class CreateObjectivesPanel extends MyPanel{
 	}
 	
 	private void displaySouth(){
-		btnBack = new MyButton("Back", btnFontSize);
+		btnBack = new MyButton(packageListener,"Back", btnFontSize);
 		south.add(btnBack,"cell 0 0");
 		btnBack.setName("Back_CreateObjectives");
-		btnBack.addActionListener(packageListener);
 		
-		btnReset = new MyButton("Reset", btnFontSize);
+		btnReset = new MyButton(packageListener,"Reset", btnFontSize);
 		south.add(btnReset,"cell 1 0");
 		btnReset.setName("Reset");
-		btnReset.addActionListener(packageListener);
 	}
 	
 	private void displayObjectives(){
-		List<Objective> obj = objectives.get(position);
-		for(Objective o: obj){
-			
-		}
+		//List<Objective> obj = objectives.get(position);
 	}
 	
 	

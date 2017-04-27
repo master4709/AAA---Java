@@ -42,27 +42,23 @@ public class HomePanel extends MyPanel{
 	}
 	
 	private void displayCenter(){
-		center.setLayout(new MigLayout("", "[200][grow][200]", "[]"));
+		center.setLayout(new MigLayout("", "[150][grow][150]", "[]"));
 		
-		btnNewGame = new MyButton("New Game", btnFontSize);
+		btnNewGame = new MyButton(packageListener,"New Game", btnFontSize);
 		center.add(btnNewGame,"cell 1 0,growx");
 		btnNewGame.setName("NewGame");
-		btnNewGame.addActionListener(packageListener);
 		
-		btnContinueGame = new MyButton("Load Game", btnFontSize);
+		btnContinueGame = new MyButton(packageListener,"Load Game", btnFontSize);
 		center.add(btnContinueGame,"cell 1 1,growx");
 		btnContinueGame.setName("ContinueGame");
-		btnContinueGame.addActionListener(packageListener);
 		
-		btnCreateGame = new MyButton("Create Game", btnFontSize);
+		btnCreateGame = new MyButton(packageListener,"Create Game", btnFontSize);
 		center.add(btnCreateGame,"cell 1 2,growx");
 		btnCreateGame.setName("CreateGame");
-		btnCreateGame.addActionListener(packageListener);
 		
-		btnAbout = new MyButton("About", btnFontSize);
+		btnAbout = new MyButton(packageListener,"About", btnFontSize);
 		center.add(btnAbout,"cell 1 3,growx");
 		btnAbout.setName("About");
-		btnAbout.addActionListener(packageListener);
 		
 	}
 }

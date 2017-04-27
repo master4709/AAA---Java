@@ -16,7 +16,7 @@ public class FontSizeUtil {
 	 * @param maxWidth - maximum length in pixels of the string
 	 * @return Integer - size of the font
 	 */
-	protected static int setFontSize(String text, int maxSize, int maxWidth){
+	public static int setFontSize(String text, int maxSize, int maxWidth){
 		int font = 5;
 		
 		AffineTransform affinetransform = new AffineTransform();

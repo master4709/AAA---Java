@@ -1,6 +1,7 @@
 package panelsHome;
 import myJStuff.*;
 import net.miginfocom.swing.MigLayout;
+import util.ColorUtil;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class NewGamePanel extends MyPanel{
 	private JTextField fldInput;
 	
 	private JButton btnBack;
+	private JButton btnDelete;
 	private JButton btnContinue;
 	
 	private List<JButton> saveFolders = new ArrayList<>();
@@ -27,7 +29,7 @@ public class NewGamePanel extends MyPanel{
 	public NewGamePanel(ActionListener packageListener, ActionListener globalListener){
 		this.packageListener = packageListener;
 		this.globalListener = globalListener;
-		contentPane.setName("New Game");
+		contentPane.setName("NewGame");
 		
 		displayNorth();
 		displaySouth();
@@ -35,7 +37,7 @@ public class NewGamePanel extends MyPanel{
 	
 	
 	private void displayNorth(){
-		lblTitle = new MyLabel("New Game",nationFontSize*3/2);
+		lblTitle = new MyLabel("NewGame",nationFontSize*3/2);
 		north.add(lblTitle,"cell 0 0");
 	}
 	
@@ -46,13 +48,12 @@ public class NewGamePanel extends MyPanel{
 		int position=0;
 		int x = 0;
 		for(String s: folders){
-			JButton btn = new MyButton(s,btnFontSize*3/5);
+			JButton btn = new MyButton(packageListener,s,btnFontSize*3/5);
 			center.add(btn,"cell "+x+" "+y+",growx");
 			btn.setName("NewGame_"+position);
-			btn.addActionListener(packageListener);
 			saveFolders.add(btn);
 			x++;
-			if(x==3){
+			if(x==2){
 				x=0;
 				y++;
 			}
@@ -61,18 +62,20 @@ public class NewGamePanel extends MyPanel{
 	}
 	
 	private void displaySouth(){
-		btnBack = new MyButton("Back", btnFontSize);
+		btnBack = new MyButton(packageListener,"Back", btnFontSize);
 		south.add(btnBack,"cell 0 0, alignx left");
 		btnBack.setName("Back");
-		btnBack.addActionListener(packageListener);
+
+		btnDelete  = new MyButton(packageListener,"Delete",btnFontSize);
+		south.add(btnDelete,"cell 1 0,alignx left");
+		btnDelete.setName("Delete_NewGame");
 		
 		fldInput = new MyTextField(8, btnFontSize);
-		south.add(fldInput,"cell 1 0, alignx center");
+		south.add(fldInput,"cell 2 0, alignx center");
 		
-		btnContinue = new MyButton("Continue", btnFontSize);
-		south.add(btnContinue, "cell 2 0,alignx right");
-		btnContinue.setName("Continue_New");
-		btnContinue.addActionListener(globalListener);
+		btnContinue = new MyButton(globalListener,"Continue", btnFontSize);
+		south.add(btnContinue, "cell 3 0,alignx right");
+		btnContinue.setName("Continue_NewGame");
 	}
 	
 	public void clear(){
@@ -91,9 +94,9 @@ public class NewGamePanel extends MyPanel{
 	public void setBtnSelected(int target){
 		for(JButton button: saveFolders){
 			if(button.getName().contains(Integer.toString(target))){
-				button.setBackground(Colors.btnSelectColor);
+				button.setBackground(ColorUtil.btnSelectColor);
 			}else{
-				button.setBackground(Colors.btnBackgroundColor);
+				button.setBackground(ColorUtil.btnBackgroundColor);
 			}
 		}
 	}

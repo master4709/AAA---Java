@@ -27,9 +27,8 @@ public class AboutPanel extends MyPanel{
 	}
 	
 	private void displaySouth(){
-		btnBack = new MyButton("Back", btnFontSize);
+		btnBack = new MyButton(packageListener,"Back", btnFontSize);
 		south.add(btnBack,"cell 0 0");
 		btnBack.setName("Back");
-		btnBack.addActionListener(packageListener);	
 	}
 }

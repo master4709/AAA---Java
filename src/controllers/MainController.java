@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import util.*;
 /**
  * 
  * @author Pierce de Jong 30006609
@@ -14,8 +16,9 @@ public class MainController implements ActionListener{
 	//Create the frame
 	private JFrame frame;
 	//Create Instance of all Controller Classes
-	private HomeController mc;
+	private HomeController hc;
 	private GameController gc;
+	private LoadGameUtil lgu;
 	
 	/**
 	 * Constructor
@@ -28,18 +31,10 @@ public class MainController implements ActionListener{
 	 * 
 	 */
 	public void run(){
-		mc = new HomeController(frame,this);
+		hc = new HomeController(frame,this);
 		gc = new GameController(frame,this);
 		
-		startHome();
-	}
-	
-	private void startHome(){
-		mc.start();
-	}
-	
-	private void startGame(){
-		gc.start();
+		hc.start();
 	}
 
 	@Override
@@ -50,13 +45,28 @@ public class MainController implements ActionListener{
 		String name = source.getName();
 		
 		switch(name){
-		case"Continue_New":
-			startGame();
+		case"Continue_NewGame":
+			String saveFolder = "data/loadGame/"+hc.getNewGameInput();
+			//Checks if a a game folder has been selected
+			if(!hc.getGameFolder().equals("")){
+				String copyFolder = "data/newGame/"+hc.getGameFolder();
+				if(saveFolder.equals("data/loadGame/")){
+					saveFolder+=hc.getGameFolder();
+				}
+				lgu = new LoadGameUtil(copyFolder);
+				lgu.copyFolder(saveFolder);
+				gc.start(saveFolder,lgu.getNation(),lgu.getRound(),lgu.getNations(),lgu.getUnits(),lgu.getResearch());
+			}
 			break;
-		case"Continue_Load":
-			startGame();
+		case"Continue_LoadGame":
+			String loadFolder = "data/loadGame/"+hc.getGameFolder();
+			if(!hc.getGameFolder().equals("")){
+				lgu = new LoadGameUtil(loadFolder);
+				gc.start(loadFolder,lgu.getNation(),lgu.getRound(),lgu.getNations(),lgu.getUnits(),lgu.getResearch());
+			}
 			break;
 		case"Home_Game":
+			hc.start();
 			break;
 		}
 	}

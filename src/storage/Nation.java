@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import util.ColorUtil;
+
 public class Nation implements Serializable{
 	
 	/**
@@ -30,12 +32,12 @@ public class Nation implements Serializable{
 		this.position = position;
 		this.bank = bank;
 		this.income = income;
-		this.roundel = new ImageIcon("dat/roundels/"+name+".png");
+		this.roundel = new ImageIcon("data/roundels/"+name+".png");
 		this.nationalObj = nationalObj;
 		this.research = research;
 	}
 	
-	public Nation(Nation n){
+	private Nation(Nation n){
 		name = n.name;
 		bank = n.bank;
 		income = n.income;
@@ -50,20 +52,50 @@ public class Nation implements Serializable{
 	public Nation copy(){
 		return new Nation(this);
 	}
+	/**
+	 * SETTERS
+	 */
+	public void setBank(int bank){
+		this.bank = bank;
+	}
 	
+	public void setIncome(int income){
+		this.income = income;
+	}
+	
+	public void endTurn(){
+		bank = bank + getTotalIncome();
+	}
+	
+	public void changeBank(int change){
+		bank = bank + change;
+		if(bank<0){
+			bank = 0;
+		}
+	}
+	
+	public void changeIncome(int change){
+		income = income + change;
+		if(income<0){
+			income = 0;
+		}
+	}
+	/**
+	 * GETTERS
+	 */
 	public String getName(){
 		return name;
 	}
 	
-	public int getBank(){
+	public Integer getBank(){
 		return bank;
 	}
 	
-	public int getIncome(){
+	public Integer getIncome(){
 		return income;
 	}
 	
-	public int getPosition(){
+	public Integer getPosition(){
 		return position;
 	}
 	
@@ -88,35 +120,10 @@ public class Nation implements Serializable{
 		return research;
 	}
 	
-	public void setBank(int bank){
-		this.bank = bank;
-	}
-	
-	public void setIncome(int income){
-		this.income = income;
-	}
-	
-	public void endTurn(){
-		bank = bank + income + getNatObjIncome();
-	}
-	
-	public void changeBank(int change){
-		bank = bank + change;
-		if(bank<0){
-			bank = 0;
-		}
-	}
-	
-	public void changeIncome(int change){
-		income = income + change;
-		if(income<0){
-			income = 0;
-		}
-	}
 	/**
 	 * @returns sum off all natObj's that are enabled
 	 */
-	public int getNatObjIncome(){
+	public Integer getNatObjIncome(){
 		int i = 0;
 		for(Objective o:nationalObj){
 			if(o.isEnabled()){
@@ -126,7 +133,36 @@ public class Nation implements Serializable{
 		return i;
 	}
 	
+	public Integer getTotalIncome(){
+		return income + getNatObjIncome();
+	}
+	@Override
 	public String toString(){
-		return position+". "+name+" "+bank+ " "+income+" | ";
+		return "position: "+(position+1)+
+				"\ncolor: "+color()+
+				"\nbank: "+bank+
+				"\nincome: "+income+
+				"\nresearch: "+getResearchS()+
+				"\n"+getObjectivesString();
+	}
+	private String color(){
+		String colorS = ColorUtil.colorMap.get(color).toLowerCase();
+		if(colorS.contains("_l")){
+			colorS+="ight";
+		}else if(colorS.contains("_d")){
+			colorS+="ark";
+		}return colorS;
+	}
+	private String getResearchS(){
+		String s = "";
+		for(Boolean b: research){
+			s+= b.toString()+" ";
+		}return s;
+	}
+	private String  getObjectivesString(){
+		String s = "";
+		for(Objective o: nationalObj){
+			s+="obj: "+o.isEnabled().toString()+" "+o.getAmount()+" "+o.getText()+"\n";
+		}return s;
 	}
 }

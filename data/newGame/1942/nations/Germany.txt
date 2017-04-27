@@ -1,6 +1,0 @@
-position: 2
-color: black
-bank: 35
-income: 35
-research_1: false false false false false false
-research_2: false false false false false false

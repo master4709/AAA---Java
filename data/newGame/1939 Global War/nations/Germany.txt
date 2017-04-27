@@ -2,8 +2,7 @@ position: 1
 color: black
 bank: 30
 income: 30
-research_1: false false false false false false
-research_2: false false false false false false
+research_1: false false false false false false false false false false false false
 obj: false 5 Peace with USSR
 obj: false 5 Germany controls both Denmark and Norway. Sweden is not pro-allied or allied controlled
 obj: false 5 Axis Control of Caucasus

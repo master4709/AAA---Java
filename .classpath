@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/pierc/OneDrive - University of Calgary/Axis and Allies/AAA - Java/src/resources/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pierc/OneDrive - University of Calgary/Eclipse Projects/AAA - Java/src/resources/jars/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pierc/OneDrive - University of Calgary/Eclipse Projects/AAA - Java/src/resources/jars/miglayout15-swing.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

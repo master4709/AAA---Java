@@ -24,7 +24,7 @@ public class Objective implements Serializable{
 		this.enabled = enabled;
 	}
 	
-	public Objective(Objective o){
+	private Objective(Objective o){
 		amount = o.amount;
 		text = o.text;
 		enabled = o.enabled;
@@ -50,7 +50,7 @@ public class Objective implements Serializable{
 		return text;
 	}
 	
-	public boolean isEnabled(){
+	public Boolean isEnabled(){
 		return enabled;
 	}
 	

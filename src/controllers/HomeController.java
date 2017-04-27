@@ -3,12 +3,15 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import org.apache.commons.io.FileUtils;
 
 import myJStuff.MyPanel;
 import panelsHome.*;
@@ -42,7 +45,11 @@ public class HomeController implements ActionListener{
 	private int nationTotal = 0;//This means there is 1 nation. (-1 is no nations)
 	
 	//String value of the location of the folder being opened ( Both Save and Load game )
-	private String loadFolder;
+	private String gameFolder;
+	
+
+	private final static String newFolder = "data/newGame/";
+	private final static String loadFolder = "data/loadGame/";
 	
 	public HomeController(JFrame frame, ActionListener globalListener){
 		this.frame = frame;
@@ -67,6 +74,7 @@ public class HomeController implements ActionListener{
 		panelAbout = ap.getContentPane();
 		
 		nationTotal = 0;
+		selection = -1;
 		
 		cgp.createNation(nationTotal);
 		cop.addNObjective();
@@ -82,30 +90,25 @@ public class HomeController implements ActionListener{
 	}
 	
 	private void switchNewPanel(){
+		gameFolder = "";
 		ngp.clear();
-		ngp.displayCenter(folders("data/newGame"));
+		ngp.displayCenter(folders(newFolder));
 		switchPanel(panelNewGame);
 	}
 	
-	private void switchContinuePanel(){
+	private void switchLoadPanel(){
+		gameFolder = "";
 		lgp.clear();
-		lgp.displayCenter(folders("data/saveFiles"));
+		lgp.displayCenter(folders(loadFolder));
 		switchPanel(panelLoadGame);
 	}
 	
 	private void switchPanel(JPanel panel){
-		System.out.println("SWITCHING: "+panel.getName());
+		System.out.println("SWITCHING: "+panel.getName()+" Panel");
 		frame.setTitle("M - Axis and Allies | "+panel.getName());
 		frame.getContentPane().setVisible(false);
 		frame.setContentPane(panel);
 		frame.getContentPane().setVisible(true);
-	}
-	/**
-	 * Returns the selection for what button was pressed when loading a save game
-	 * @return selection - Integer
-	 */
-	public Integer getSelection(){
-		return selection;
 	}
 	
 	public String getNewGameInput(){
@@ -113,11 +116,7 @@ public class HomeController implements ActionListener{
 	}
 	
 	public String getGameFolder(){
-		return loadFolder;
-	}
-	
-	public void resetButtons(){
-		lgp.setBtnSelected(-1);;
+		return gameFolder;
 	}
 	/**
 	 * Finds all of the files (folders) in the specific direcotry
@@ -125,7 +124,7 @@ public class HomeController implements ActionListener{
 	 * @param directory - location to search 
 	 * @return - List<String> folderNames
 	 */
-	public List<String> folders(String directory) {
+	private List<String> folders(String directory) {
 		List<String> saveFolders = new ArrayList<>();
 		File dir = new File(directory);
 		for (File file : dir.listFiles()) {
@@ -145,7 +144,7 @@ public class HomeController implements ActionListener{
 			switchNewPanel();
 			break;
 		case"ContinueGame":
-			switchContinuePanel();
+			switchLoadPanel();
 			break;
 		case"CreateGame":
 			switchPanel(panelCreateGame);
@@ -156,6 +155,30 @@ public class HomeController implements ActionListener{
 		case"Back":
 			selection=-1;
 			switchPanel(panelHome);
+			break;
+		case"Delete_NewGame":
+			if(selection!=-1){
+				File dir = new File(newFolder+folders(newFolder).get(selection));
+				try {
+					System.out.println("DELETE: "+dir);
+					FileUtils.deleteDirectory(dir);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				switchNewPanel();
+			}
+			break;
+		case"Delete_LoadGame":
+			if(selection!=-1){
+				File dir = new File(loadFolder+folders(loadFolder).get(selection));
+				try {
+					System.out.println("DELETE: "+dir);
+					FileUtils.deleteDirectory(dir);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				switchLoadPanel();
+			}
 			break;
 		case"Add_CreateGame":
 			nationTotal++;
@@ -179,11 +202,11 @@ public class HomeController implements ActionListener{
 			if(name.contains("NewGame_")){
 				selection = Integer.parseInt(name.substring(8, name.length()));
 				ngp.setBtnSelected(selection);
-				loadFolder = source.getText();
-			}else if(name.contains("ContinueGame_")){
-				selection = Integer.parseInt(name.substring(13, name.length()));
+				gameFolder = source.getText();
+			}else if(name.contains("LoadGame_")){
+				selection = Integer.parseInt(name.substring(9, name.length()));
 				lgp.setBtnSelected(selection);
-				loadFolder = source.getText();
+				gameFolder = source.getText();
 			}else if(name.contains("Objective_")){
 				selection = Integer.parseInt(name.substring(10, name.length()));
 				cop.setNation(cgp.getNName(selection), cgp.getNColor(selection), selection);

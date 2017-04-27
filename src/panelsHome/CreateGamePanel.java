@@ -3,23 +3,25 @@ package panelsHome;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 
 import myJStuff.*;
 import net.miginfocom.swing.MigLayout;
-import storage.Objective;
+import util.ColorUtil;
 
 public class CreateGamePanel extends MyPanel{
 	
@@ -50,12 +52,9 @@ public class CreateGamePanel extends MyPanel{
 	private List<Color> possibleColors = new ArrayList<>();
 	private List<String> possibleColorsString = new ArrayList<>();
 	
-	private Map<Color, String> colorMap = new HashMap<Color, String>();
-	
-	
 	public CreateGamePanel(ActionListener packageListener){
 		this.packageListener = packageListener;
-		contentPane.setName("Create Game");
+		contentPane.setName("CreateGame");
 		
 		findColors();
 		
@@ -66,9 +65,8 @@ public class CreateGamePanel extends MyPanel{
 	
 	
 	private void displayNorth(){
-		lblTitle = new MyLabel("Create Game",nationFontSize);
-		//lblTitle.setBorder(new EmptyBorder(new Insets(0,0,0,0)));
-		lblTitle.setBorder(new EmptyBorder(new Insets(-5,-5,-5,-5)));
+		lblTitle = new MyLabel("CreateGame",nationFontSize);
+		lblTitle.setBorder(emptyBorder);
 		north.add(lblTitle,"cell 0 0");
 	}
 	
@@ -90,32 +88,28 @@ public class CreateGamePanel extends MyPanel{
 		center.add(lblObjective, "cell 4 0,alignx center");
 		
 		ImageIcon icon = new ImageIcon(source+"images/plus.png");
-		btnAdd = new MyButton(icon);
+		btnAdd = new MyButton(packageListener,icon);
 		center.add(btnAdd,"cell 0 2");
-		btnAdd.addActionListener(packageListener);
 		btnAdd.setName("Add_CreateGame");
 	}
 	
 	private void displaySouth(){
-		btnBack = new MyButton("Back", btnFontSize);
+		btnBack = new MyButton(packageListener,"Back", btnFontSize);
 		south.add(btnBack,"cell 0 0");
 		btnBack.setName("Back");
-		btnBack.addActionListener(packageListener);
 		
-		btnReset = new MyButton("Reset", btnFontSize);
+		btnReset = new MyButton(packageListener,"Reset", btnFontSize);
 		south.add(btnReset,"cell 1 0");
 		btnReset.setName("Reset_CreateGame");
-		btnReset.addActionListener(packageListener);
 	}
 	
 	public void createNation(int position){
 		
 		int yPosition = position + 1;
 		ImageIcon icon = new ImageIcon(source+"images/cross.png");
-		JButton btnRemove = new MyButton(icon);
+		JButton btnRemove = new MyButton(packageListener,icon);
 		center.add(btnRemove,"cell 0 "+yPosition);
 		btnRemove.setName("Remove_CreateGame_"+position);
-		btnRemove.addActionListener(packageListener);
 		remove.add(btnRemove);
 		
 		txtName = new MyTextField("Nation "+yPosition, unitFontSize);
@@ -139,10 +133,9 @@ public class CreateGamePanel extends MyPanel{
 		colorBox.setName("Color_"+position);
 		colors.add(colorBox);
 		
-		btnObjective = new MyButton("National Objectives",unitFontSize);
+		btnObjective = new MyButton(packageListener,"National Objectives",unitFontSize);
 		center.add(btnObjective,"cell 4 "+yPosition);
 		btnObjective.setName("Objective_"+position);
-		btnObjective.addActionListener(packageListener);
 		objectivesBtns.add(btnObjective);
 		if(position!=9){
 			center.add(btnAdd,"cell 0 "+(names.size()+1));
@@ -206,36 +199,13 @@ public class CreateGamePanel extends MyPanel{
 			Scanner scan = new Scanner(new File(source+"colors.txt"));
 			while(scan.hasNextLine()){
 				String line = scan.nextLine();
-				possibleColors.add(getColor(line));
+				possibleColors.add(ColorUtil.getColor(line));
 				possibleColorsString.add(line);
 			}
 			scan.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private Color getColor(String color){
-		Color c;
-		try{
-			Field field = Colors.class.getField(color);
-			c = (Color)field.get(null);
-		} catch (Exception e){
-			System.out.println("No Color found with name: "+color);
-			c = null;
-		}
-		return c;
-	}
-	
-	private Color getColorLight(String color){
-		Color c;
-		try{
-			Field field = Colors.class.getField("light_"+color);
-			c = (Color)field.get(null);
-		} catch (Exception e){
-			c = null;
-		}
-		return c;
 	}
 	
 	public String getNName(int nation){
@@ -252,21 +222,7 @@ public class CreateGamePanel extends MyPanel{
 		
 		public MyCellRenderer() {
 			setOpaque(true); 
-			colorMap.put(Colors.red, "Red");
-			colorMap.put(Colors.orange, "Orange");
-			colorMap.put(Colors.yellow, "Yellow");
-			colorMap.put(Colors.pink, "Pink");
-			colorMap.put(Colors.purple, "Purple");
-			colorMap.put(Colors.blue, "Blue");
-			colorMap.put(Colors.blue_light, "Blue_L");
-			colorMap.put(Colors.green, "Green");
-			colorMap.put(Colors.green_light, "Green_L");
-			colorMap.put(Colors.brown, "Brown");
-			colorMap.put(Colors.tan_dark, "Tan_D");
-			colorMap.put(Colors.tan, "Tan");
-			colorMap.put(Colors.black, "Black");
-			colorMap.put(Colors.grey, "Grey");
-			colorMap.put(Colors.white, "White");
+			
 		}
 		boolean b=false;
 		@Override
@@ -279,7 +235,7 @@ public class CreateGamePanel extends MyPanel{
 		}
 		public Component getListCellRendererComponent(JList<?> list,Object value,int index,boolean isSelected,boolean cellHasFocus){
 			b=true;
-	    	setText(colorMap.get(value));
+	    	setText(ColorUtil.colorMap.get(value));
 	    	setBackground((Color)value);
 	    	b=false;
 	    	return this;

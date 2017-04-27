@@ -20,10 +20,10 @@ public class Unit {
 		this.count = 0;
 		this.position = position;
 		this.name = name;
-		this.stats = " "+attack+" "+defense+" "+movement+" "+cost;
+		this.stats = " "+attack+"   "+defense+"   "+movement+"   "+cost;
 	}
 	
-	public Unit(Unit u){
+	private Unit(Unit u){
 		attack = u.attack;
 		defense = u.defense;
 		movement = u.movement;
@@ -34,28 +34,8 @@ public class Unit {
 		stats = u.stats;
 	}
 	
-	public String getStats(){
-		return stats;
-	}
-	
-	public int getAttack(){
-		return attack;
-	}
-	
-	public int getDefense(){
-		return defense;
-	}
-	
-	public int getMovement(){
-		return movement;
-	}
-	
-	public int getCost(){
-		return cost;
-	}
-	
-	public int getPosition(){
-		return position;
+	public Unit copy(){
+		return new Unit(this);
 	}
 	
 	public void addOne(){
@@ -65,7 +45,31 @@ public class Unit {
 		count = 0;
 	}
 	
-	public int getCount(){
+	public String getStats(){
+		return stats;
+	}
+	
+	public Integer getAttack(){
+		return attack;
+	}
+	
+	public Integer getDefense(){
+		return defense;
+	}
+	
+	public Integer getMovement(){
+		return movement;
+	}
+	
+	public Integer getCost(){
+		return cost;
+	}
+	
+	public Integer getPosition(){
+		return position;
+	}
+	
+	public Integer getCount(){
 		return count;
 	}
 	
