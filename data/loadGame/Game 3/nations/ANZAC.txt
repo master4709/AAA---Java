@@ -1,6 +1,6 @@
 position: 9
-color: grey
-bank: 20
+color: tan_dark
+bank: 30
 income: 10
 research: false false false false false false false false false false false false 
 obj: false 5 ANZAC control all original territories and Allies control Kwangtung and Malaya 

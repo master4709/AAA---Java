@@ -1,0 +1,6 @@
+position: 6
+color: tan
+bank: 40
+income: 28
+research: false false true true true false false false false false false false 
+obj: true 5 Britain controls all of its original territories 

@@ -1,9 +1,9 @@
 position: 2
 color: red
-bank: 74
+bank: 86
 income: 37
-research: false false false false false false false false false false false false 
-obj: false 5 No Axis warships in sea zone 25 and USSR controls Archangel 
+research: false false false true true false false false false false true false 
+obj: true 5 No Axis warships in sea zone 25 and USSR controls Archangel 
 obj: false 3 Each German or Italian territory controlled by USSR -1 
 obj: false 3 Each German or Italian territory controlled by USSR -2 
 obj: false 3 Each German or Italian territory controlled by USSR -3 

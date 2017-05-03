@@ -1,0 +1,15 @@
+position: 1
+color: black
+bank: 90
+income: 27
+research: false false false true false false false true false false false false 
+obj: true 5 Peace with USSR 
+obj: true 5 Germany controls both Denmark and Norway. Sweden is not pro-allied or allied controlled 
+obj: true 5 Axis Control of Caucasus 
+obj: false 5 At least 1 German unit in Axis-controlled Egypt 
+obj: false 5 Control of Novgorod (Leningrad) 
+obj: false 5 Control of Volograd (Stalingrad) 
+obj: false 5 Control of Russia (Moscow) 
+obj: false 2 Control of Irag 
+obj: false 2 Control of Persia 
+obj: false 2 Control of Northwest Persia 

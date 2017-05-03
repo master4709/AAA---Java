@@ -1,7 +1,7 @@
 position: 8
-color: pink
-bank: 24
-income: 12
+color: brown
+bank: 30
+income: 10
 research: false false false false false false false false false false false false 
 obj: false 5 No Allied surface warships in the Mediterranean sea 
 obj: false 5 Axis control 3 of the following: Gibraltar, Southern France, Greeece, Egypt 

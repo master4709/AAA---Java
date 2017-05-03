@@ -1,0 +1,6 @@
+position: 7
+color: tan
+bank: 39
+income: 17
+research: false false false false false false false false false false false false 
+obj: true 5 Britain Pacific control both Kwangtung and Malaya 
