@@ -1,6 +1,6 @@
 position: 1
 color: black
-bank: 96
+bank: 90
 income: 30
 research: false false false false false false false false false false false false 
 obj: false 5 Peace with USSR 

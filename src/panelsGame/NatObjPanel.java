@@ -99,7 +99,7 @@ public class NatObjPanel extends MyPanel{
 				objectiveButton.get(i).setVisible(true);
 				objectiveButton.get(i).setName("objective_"+i);
 				objectiveButton.get(i).setText(n.getObjectives().get(i).toString());
-				objectiveButton.get(i).setFont(new MyFont(FontSizeUtil.setFontSize(objectiveButton.get(i).getText(), btnFontSize, screenWidth-100)));
+				objectiveButton.get(i).setFont(new MyFont(objectiveButton.get(i).getText(), btnFontSize, screenWidth-100));
 				if(n.getObjectives().get(i).isEnabled()){
 					objectiveButton.get(i).setBackground(n.getColorLight());
 				}else{

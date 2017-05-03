@@ -1,6 +1,6 @@
 position: 5
 color: purple
-bank: 33
+bank: 22
 income: 11
 research: false false false false false false false false false false false false 
 obj: false 6 Burma Road is open, Allies control: India, Burma, Yunnan and Szechwan 

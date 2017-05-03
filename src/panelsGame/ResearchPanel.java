@@ -15,8 +15,9 @@ import util.ColorUtil;
 
 public class ResearchPanel extends MyPanel{
 
-	private JButton btnBack;
+	private JLabel lblTitle;
 	
+	private JButton btnBack;
 	private JButton btnReset;
 	
 	private List<List<JButton>> btnList = new ArrayList<>();
@@ -29,7 +30,8 @@ public class ResearchPanel extends MyPanel{
 	}
 	
 	private void displayNorth(){
-		
+		lblTitle = new MyLabel("Research",nationFontSize*3/2);
+		north.add(lblTitle,"cell 0 0,alignx center");
 	}
 	
 	public void displayCenter(List<Nation> nations, List<Research> research){
@@ -40,10 +42,9 @@ public class ResearchPanel extends MyPanel{
 			if(!n.getName().contains("Pacific")){
 				String name = n.getName().substring(0,3);
 				for(int y=0;y<12;y++){
-					JButton btn = new MyButton(packageListener,name,btnFontSize*2/3,ColorUtil.white);
+					JButton btn = new MyButton(packageListener,name,unitFontSize,ColorUtil.white);
 					center.add(btn,"cell "+n.getPosition()+" "+y+",growx,growy");
 					btn.setName("research_"+y);
-					
 					if(n.getResearch().get(y)){
 						btn.setBackground(n.getColor());
 					}
@@ -56,10 +57,10 @@ public class ResearchPanel extends MyPanel{
 		Color c  = ColorUtil.white;
 		Color l = ColorUtil.light_grey;
 		for(Research r: research){
-			JLabel lblResearch = new MyLabel(r.getResearch(),nationInfoFontSize,c);
+			JLabel lblResearch = new MyLabel(r.getResearch(),btnFontSize*4/3,c);
 			center.add(lblResearch,"cell "+nations.size()+" "+r.getPosition()+",alignx left");
 			lblResearch.setBorder(emptyBorder);
-			JLabel lblInfo = new MyLabel(" - " + r.getInfo(),btnFontSize,l);
+			JLabel lblInfo = new MyLabel(" - " + r.getInfo(),unitFontSize,l);
 			center.add(lblInfo,"cell "+nations.size()+" "+r.getPosition()+",alignx left,aligny center");
 			lblInfo.setBorder(emptyBorder);
 		}

@@ -35,7 +35,7 @@ public class ColorUtil {
 	public static final Color tan_dark = new Color(135,116,109);
 	public static final Color light_tan_dark = new Color(185,166,159);
 	
-	public static final Color pink = new Color(201,82,171);
+	public static final Color pink = new Color(190,72,161);
 	public static final Color light_pink = new Color(255,145,235);
 	
 	public static final Color brown = new Color(117,65,0);

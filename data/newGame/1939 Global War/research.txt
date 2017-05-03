@@ -1,12 +1,12 @@
-Heavy Artillery|All Artillery support 2 infantry units
-Rockets|Rockets do stuff
-Jet Fighters|All fighters attack at a 4
-Long-Range Aircraft|All aircraft have +1 movement
-War Bonds|Recieve higher number of two dice roles 
-Blitz Tactics|Mobile Infantry can now blitz
-Super Submarines|Suvs attack at a 3
-Anti-Aircraft Radar|Something
-Improved Shipyards|Life
-Mass Production|All ships are 1 IPC less
+Heavy Artillery|All artillery now support up to 2 attacking infantry and/or mech infantry each
+Rockets|Each operational airbase may launch a rocket at an enemy facility up to 4 spaces away, roll 2 dice per rocket and apply the highest result for damage.
+Jet Fighters|All fighters now attack at 4 or less, and defend at 2 or less when escorting or intercepting.
+Long-Range Aircraft|Maximum movement range for all air units is now increased by 1.
+War Bonds|During the collect income phase, roll 2 dice and collect IPCs in the amount shown on the highest roll. (For UK war bonds, Calcutta will gain IPCs from the lowest roll, London will gain IPCs from the highest roll).
+Blitz Tactics|Mech infantry now attack at 2 or less if paired with a tank as well as artillery, they may blitz without tanks, and they may tow 1 artillery unit each during the non-combat movement phase.
+Super Submarines|All subs attack at a 3
+Anti-Aircraft Radar|All ant-aircraft defend at a 2
+Improved Shipyards|All ships are 1 IPC cheaper
+Mass Production|All production facilities increase mobilization  by 2
 Super Carrier Decks|All carriers fir 3 aircraft
-Heavy Bombers|All bombers so something
+Heavy Bombers|Roll 2 die, select best result for all battles

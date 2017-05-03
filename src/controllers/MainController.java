@@ -18,7 +18,7 @@ public class MainController implements ActionListener{
 	//Create Instance of all Controller Classes
 	private HomeController hc;
 	private GameController gc;
-	private LoadGameUtil lgu;
+	private LoadGameUtil lgu = new LoadGameUtil();;
 	
 	/**
 	 * Constructor
@@ -33,7 +33,6 @@ public class MainController implements ActionListener{
 	public void run(){
 		hc = new HomeController(frame,this);
 		gc = new GameController(frame,this);
-		
 		hc.start();
 	}
 
@@ -53,16 +52,15 @@ public class MainController implements ActionListener{
 				if(saveFolder.equals("data/loadGame/")){
 					saveFolder+=hc.getGameFolder();
 				}
-				lgu = new LoadGameUtil(copyFolder);
-				lgu.copyFolder(saveFolder);
-				gc.start(saveFolder,lgu.getNation(),lgu.getRound(),lgu.getNations(),lgu.getUnits(),lgu.getResearch());
+				lgu.copyFolder(copyFolder,saveFolder);
+				gc.start(lgu,lgu.getNation(),lgu.getRound(),lgu.getNations(),lgu.getUnits(),lgu.getResearch());
 			}
 			break;
 		case"Continue_LoadGame":
 			String loadFolder = "data/loadGame/"+hc.getGameFolder();
 			if(!hc.getGameFolder().equals("")){
-				lgu = new LoadGameUtil(loadFolder);
-				gc.start(loadFolder,lgu.getNation(),lgu.getRound(),lgu.getNations(),lgu.getUnits(),lgu.getResearch());
+				lgu.loadFolder(loadFolder);
+				gc.start(lgu,lgu.getNation(),lgu.getRound(),lgu.getNations(),lgu.getUnits(),lgu.getResearch());
 			}
 			break;
 		case"Home_Game":

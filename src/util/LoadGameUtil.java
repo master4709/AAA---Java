@@ -17,40 +17,80 @@ public class LoadGameUtil{
 	private File researchFile;
 	private File currentFile;
 	
-	//Stores String values for every word (Defined as a space between two characters) on the current line
-	private List<String> line = new ArrayList<>();
-	private List<String> nationNames = new ArrayList<>();
+	private List<String> nationNames;
 
-	private List<Nation> nations = new ArrayList<>();
-	private List<Unit> units = new ArrayList<>();
-	private List<Research> research = new ArrayList<>();
+	private List<Nation> nations;
+	private List<Unit> units;
+	private List<Research> research;
 	
 	private int nation = 0;
 	private int round = 1;
 	private boolean firstUnit = true;
 	
-	
-	public LoadGameUtil(String folder){
+	public void loadFolder(String folder){
 		this.folder = folder;
 		this.nationFolder = new File(folder+"/nations/");
 		this.unitFile = new File(folder+"/units.txt");
 		this.researchFile = new File(folder+"/research.txt");
 		this.currentFile = new File(folder+"/current nation.txt");
 		
+		nationNames = new ArrayList<>();
+		nations = new ArrayList<>();
+		units = new ArrayList<>();
+		research = new ArrayList<>();
+		
 		loadInfo();
 	}
-	
-	public void copyFolder(String newFolder){
-		File source = new File(folder);
-		File dest = new File(newFolder);
+	/**
+	 * Copies a folder from one directory to another
+	 * Used for creating a new game
+	 * @param copyFolder - String location of the folder to be copied
+	 * @param folder - String location of the new folder
+	 */
+	public void copyFolder(String copyFolder, String folder){
+		File source = new File(copyFolder);
+		File dest = new File(folder);
 		try {
 		    FileUtils.copyDirectory(source, dest);
-		    System.out.println("COPYING: game data to - "+dest);
+		    System.out.println("COPYING: game data from - "+source+" to - "+dest);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		loadFolder(folder);
+	}
+	/**
+	 * Saves the current state of the game to the current save Game
+	 * @param nation - Integer current position in the game + 1
+	 * @param round - Integer current round of play
+	 * @param nations - List<Nation>
+	 * @throws FileNotFoundException
+	 */
+	public void saveFolder(int nation, int round, List<Nation> nations) throws FileNotFoundException{
+		savePosition(nation,round);
+		saveNations(nations);
 	}
 	
+	private void saveNations(List<Nation> nations) throws FileNotFoundException{
+		for(Nation n: nations){
+			try(PrintWriter writer = new PrintWriter(new FileOutputStream(folder+"/nations/"+n.getName()+".txt"))){
+				writer.print(n.toString());
+				writer.close();
+			}
+		}
+	}
+	
+	private void savePosition(int position, int round) throws FileNotFoundException{
+		try(PrintWriter writer = new PrintWriter(new FileOutputStream(folder+"/current nation.txt"))){
+			writer.println("position: "+(position));
+			writer.println("round: "+round);
+			writer.close();
+		}
+	}
+	/**
+	 * Reads all of the files in the current game folder
+	 * Creates and fills all of the needed data points for the game
+	 * Finds the cur
+	 */
 	private void loadInfo(){
 		scanNationFolder();
 		scanNations();
@@ -61,7 +101,7 @@ public class LoadGameUtil{
 	/**
 	 * Finds all of the nation files in the 
 	 */
-	public void scanNationFolder() {
+	private void scanNationFolder() {
 		String text="";
 		System.out.println("READING: nation data from - "+nationFolder);
 		for(File file: nationFolder.listFiles()) {
@@ -74,18 +114,23 @@ public class LoadGameUtil{
 		}
 	}
 	
-	public void scanNations(){
+	private void scanNations(){
 		File nat;
+		//List of all of the data in the current nation file
 		List<List<String>> nationData;
+		//List of all of the words of the current line in the nation file
+		List<String> line;
 		int position = 0;
 		for(String name: nationNames){
 			nationData = new ArrayList<>();
 			nat = new File(nationFolder+"/"+name+".txt");
 			try (Scanner scan = new Scanner(nat);){
+				//Scans all of the lines of the nation file
 				while(scan.hasNextLine()){
 					String currentLine = scan.nextLine();
 					Scanner lineS = new Scanner(currentLine);
 					line = new ArrayList<>();
+					//Splits the current line into a new List for the data
 					while(lineS.hasNext()){
 						String str = lineS.next();
 						line.add(str);
@@ -95,11 +140,11 @@ public class LoadGameUtil{
 					nationData.add(line);
 				}
 				scan.close();
+				//Create a new Nation and added it to the list
 				createNation(nationData,position);
 			} catch (FileNotFoundException e) {
 				System.out.println("ERROR: could not load/find file - "+nat);
 			}
-			
 			position++;
 		}
 	}
@@ -121,6 +166,7 @@ public class LoadGameUtil{
 	private void scanUnits(){
 		List<String> unitData;
 		int position = 0;
+		firstUnit = true;
 		try(Scanner scan = new Scanner(unitFile);) {
 			System.out.println("READING: unit data from - "+unitFile);
 			while (scan.hasNextLine()){

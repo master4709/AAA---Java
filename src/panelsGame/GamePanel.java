@@ -3,7 +3,6 @@ package panelsGame;
 import storage.*;
 import myJStuff.*;
 import net.miginfocom.swing.MigLayout;
-import util.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -80,7 +79,6 @@ public class GamePanel extends MyPanel{
 	}
 	
 	public void displayWest(List<Unit> units){
-		
 		lblCount = new MyLabel("Count",btnFontSize);
 		west.add(lblCount, "cell 0 0,alignx center");
 		lblBuy = new MyLabel("Buy",btnFontSize);
@@ -121,7 +119,6 @@ public class GamePanel extends MyPanel{
 			west.add(lblCost,"cell 6 "+u.getPosition()+1+",alignx center");
 			
 			row = new ArrayList<>(Arrays.asList(lblName,lblAttack,lblDefense,lblMovement,lblCost));
-			
 			countLabel.add(lblCount);
 			buyButton.add(btnBuy);
 			statsLabel.add(row);
@@ -132,7 +129,7 @@ public class GamePanel extends MyPanel{
 		btnReset.setName("Reset_Buy");
 		
 		btnPacific = new MyButton(packageListener,"Buy Pacific Units",btnFontSize);
-		west.add(btnPacific,"cell 2 "+units.size()+1+" 2 1");
+		west.add(btnPacific,"cell 2 "+units.size()+1+" 5 1");
 		btnPacific.setName("Pacific");
 		btnPacific.setVisible(false);
 	}
@@ -210,7 +207,13 @@ public class GamePanel extends MyPanel{
 	}
 	
 	private void updateUnitColor(Color c, Color l){
-		
+		lblCount.setForeground(c);
+		lblBuy.setForeground(c);
+		lblName.setForeground(c);
+		lblA.setForeground(c);
+		lblD.setForeground(c);
+		lblM.setForeground(c);
+		lblC.setForeground(c);
 		Color m;
 		for(int y=0;y<countLabel.size();y++){
 			if(y%2==0) m=c;
@@ -274,7 +277,7 @@ public class GamePanel extends MyPanel{
 	private Integer getNationFontSize(List<Nation> nations){
 		String allNations="";
 		for(Nation n: nations) allNations+=n.getName();
-		int size = FontSizeUtil.setFontSize(allNations,nationFontSize,screenWidth-100);
+		int size = MyFont.setFontSize(allNations,nationFontSize,screenWidth-100);
 		return size;
 	}
 }

@@ -1,6 +1,6 @@
 position: 8
 color: pink
-bank: 36
+bank: 24
 income: 12
 research: false false false false false false false false false false false false 
 obj: false 5 No Allied surface warships in the Mediterranean sea 

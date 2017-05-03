@@ -1,6 +1,0 @@
-position: 10
-color: blue
-bank: 19
-income: 19
-obj: research_1: false false false false false false
-obj: research_2: false false false false false false

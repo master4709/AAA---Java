@@ -47,11 +47,9 @@ public abstract class MyPanel{
 		setTheme();
 		
 		contentPane = new JPanel();
-
 		contentPane.setBorder(defaultBorder);
-		//contentPane.setBorder();
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.setPreferredSize(new Dimension(750,500));
+		
 		//These panels are what all JLabels, buttons etc. are added to
 		north = new JPanel();
 		contentPane.add(north, BorderLayout.NORTH);
@@ -79,10 +77,11 @@ public abstract class MyPanel{
 	
 	// Default sizes for certain font templates
 	private void setFont(){
-		nationFontSize = 80;
-		nationInfoFontSize = 60;
-		unitFontSize = 25;
-		btnFontSize = 40;
+		nationFontSize = screenWidth/24;
+		nationInfoFontSize = nationFontSize*3/4;
+		
+		unitFontSize = screenHeight/44;
+		btnFontSize = unitFontSize*5/3;
 	}
 	
 	// Ensure the background color for all panels are black

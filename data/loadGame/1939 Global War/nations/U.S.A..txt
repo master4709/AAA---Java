@@ -1,6 +1,6 @@
 position: 4
 color: green
-bank: 180
+bank: 90
 income: 45
 research: false false false false false false false false false false false false 
 obj: false 10 U.S.A controls : Eastern United States, Central United States, Western United States 

@@ -50,7 +50,6 @@ public class CreateGamePanel extends MyPanel{
 	private List<JButton> objectivesBtns = new ArrayList<>();
 	
 	private List<Color> possibleColors = new ArrayList<>();
-	private List<String> possibleColorsString = new ArrayList<>();
 	
 	public CreateGamePanel(ActionListener packageListener){
 		this.packageListener = packageListener;
@@ -195,12 +194,10 @@ public class CreateGamePanel extends MyPanel{
 	}
 	
 	private void findColors(){
-		try {
-			Scanner scan = new Scanner(new File(source+"colors.txt"));
+		try(Scanner scan = new Scanner(new File(source+"colors.txt"))) {
 			while(scan.hasNextLine()){
 				String line = scan.nextLine();
 				possibleColors.add(ColorUtil.getColor(line));
-				possibleColorsString.add(line);
 			}
 			scan.close();
 		} catch (FileNotFoundException e) {

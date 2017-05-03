@@ -1,6 +1,6 @@
 position: 3
 color: orange
-bank: 120
+bank: 60
 income: 30
 research: false false false false false false false false false false false false 
 obj: false 10 Peace with the U.S.A. and no unprovoked attacks on Britain, ANZAC or Feench Indo-China 

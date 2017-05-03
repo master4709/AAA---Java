@@ -1,6 +1,6 @@
 position: 2
 color: red
-bank: 148
+bank: 74
 income: 37
 research: false false false false false false false false false false false false 
 obj: false 5 No Axis warships in sea zone 25 and USSR controls Archangel 

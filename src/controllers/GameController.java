@@ -3,7 +3,6 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -13,8 +12,7 @@ import javax.swing.JPanel;
 import logic.*;
 import panelsGame.*;
 import storage.*;
-import util.ColorUtil;
-import util.SaveGameUtil;
+import util.*;
 
 public class GameController implements ActionListener{
 	
@@ -32,7 +30,7 @@ public class GameController implements ActionListener{
 	
 	private Game game;
 	
-	private SaveGameUtil sgu;
+	private LoadGameUtil lgu;
 	
 	/**
 	 * Constructor
@@ -46,12 +44,12 @@ public class GameController implements ActionListener{
 		this.frame.setVisible(true);
 	}
 	
-	public void start(String saveFolder, int nation, int round, List<Nation> nations, List<Unit> units, List<Research> research){
+	public void start(LoadGameUtil lgu, int nation, int round, List<Nation> nations, List<Unit> units, List<Research> research){
+		this.lgu = lgu;
 		game = new Game(nation,round,nations,units);
 		gp = new GamePanel(this,globalListener);
 		nop = new NatObjPanel(this);
 		rp = new ResearchPanel(this);
-		sgu = new SaveGameUtil(saveFolder);
 		
 		panelGame = gp.getContentPane();
 		panelNatObj = nop.getContentPane();
@@ -96,6 +94,12 @@ public class GameController implements ActionListener{
 		updateGamePanel();
 		updateEcoNation();
 		save();
+		if(game.getN().getName().contains("Britain")){
+			
+		}
+		if(game.getN().getName().contains("Pacific")){
+			endTurn();
+		}
 	}
 	/**
 	 * Updates the Game Panel for the current Nation
@@ -139,21 +143,17 @@ public class GameController implements ActionListener{
 	 * Anything pressed after end turn will NOT be saved
 	 */
 	private void save(){
-		try {
-			sgu.saveNations(game.getNations());
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		//Adds one to the position for user readability. (1 for the first position not 0)
 		int position = game.getNation()+1;
 		if(position==game.getNations().size()+1){
 			position=1;
 		}
-		sgu.savePosition(position, game.getRound());
+		try {
+			lgu.saveFolder(position, game.getRound(), game.getNations());
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: Printing save game to the folder");
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
