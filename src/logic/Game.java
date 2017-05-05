@@ -11,7 +11,7 @@ public class Game {
 	private int nation;
 	private int ecoNation;
 	
-	private int bank;
+	private int oldBank;
 	
 	private Nation n;
 	private Nation ecoN;
@@ -28,7 +28,7 @@ public class Game {
 		n = this.nations.get(nation);
 		ecoN = this.nations.get(nation);
 		
-		bank = n.copy().getBank();
+		oldBank = n.copy().getBank();
 	}
 	/**
 	 * Adds the income of the current nation to its bank
@@ -48,8 +48,8 @@ public class Game {
 		ecoNation = nation;
 		n = nations.get(nation);
 		ecoN = nations.get(ecoNation);
-		
-		bank = n.copy().getBank();
+		oldBank = n.copy().getBank();
+		resetBuy();
 	}
 	/**
 	 * Moves the ecoNation to the next element in the list
@@ -128,7 +128,7 @@ public class Game {
 	
 	public void resetBuy(){
 		for(Unit u: units) u.resetCount();
-		n.setBank(bank);
+		n.setBank(oldBank);
 	}
 	
 	/**
@@ -208,7 +208,8 @@ public class Game {
 	 * @return List<Nation> - list of all of the nations
 	 */
 	public List<Nation> getNations(){
-		List<Nation> clone = new ArrayList<>(nations);
+		List<Nation> clone = new ArrayList<>();
+		for(Nation n: nations) clone.add(n.copy());
 		return clone;
 	}
 	

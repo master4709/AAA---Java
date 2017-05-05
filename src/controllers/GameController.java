@@ -94,10 +94,10 @@ public class GameController implements ActionListener{
 		updateGamePanel();
 		updateEcoNation();
 		save();
-		if(game.getN().getName().contains("Britain")){
-			
-		}
-		if(game.getN().getName().contains("Pacific")){
+		if(game.getNxtN().getName().contains("Pacific")){
+			gp.setPacificBtnVisible(true);
+		}else if(game.getN().getName().contains("Pacific")){
+			gp.setPacificBtnVisible(false);
 			endTurn();
 		}
 	}
