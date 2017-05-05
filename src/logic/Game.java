@@ -158,6 +158,26 @@ public class Game {
 		return nations.get(position).copy();
 	}
 	/**
+	 * @return Nation - nation before the current ecoNation
+	 */
+	public Nation getPreN(){
+		int nat = nation-1;
+		if(nat==-1){
+			nat=nations.size()-1;
+		}
+		return nations.get(nat).copy();
+	}
+	/**
+	 * @return Nation - nation after the current ecoNation
+	 */
+	public Nation getNxtN(){
+		int nat = nation+1;
+		if(nat==nations.size()){
+			nat=0;
+		}
+		return nations.get(nat).copy();
+	}
+	/**
 	 * @return Nation - current ecoNation
 	 */
 	public Nation getEcoN(){
