@@ -93,13 +93,20 @@ public class GameController implements ActionListener{
 		game.nextNation();
 		updateGamePanel();
 		updateEcoNation();
-		save();
-		if(game.getNxtN().getName().contains("Pacific")){
-			gp.setPacificBtnVisible(true);
-		}else if(game.getN().getName().contains("Pacific")){
+		if(game.getN().getName().contains("Pacific")){
 			gp.setPacificBtnVisible(false);
-			endTurn();
+			game.endTurn();
+			gp.updateNInfo(game.getN());
+			game.nextNation();
+			updateGamePanel();
+			updateEcoNation();
+		}else if(game.getNxtN().getName().contains("Pacific")){
+			gp.setPacificBtnVisible(true);
+		}else if(game.getPreN().getName().contains("Pacific")){
+			game.endTurnPacificMain();
+			gp.updateAllNInfo(game.getNations());
 		}
+		save();
 	}
 	/**
 	 * Updates the Game Panel for the current Nation

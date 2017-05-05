@@ -117,7 +117,12 @@ public class Game {
 			nations.get(postition).getResearch().set(i, false);
 		}
 	}
-	
+	/**
+	 * Buys a unit for the specific nation
+	 *  -adds one to the unit count
+	 *  -remove amount from the bank
+	 * @param position - index value of what unit to buy in the List<Unit>
+	 */
 	public void buyUnit(int position){
 		int change = -units.get(position).getCost();
 		if(n.getBank()+change>=0){
@@ -125,10 +130,23 @@ public class Game {
 			n.changeBank(change);
 		}
 	}
-	
+	/**
+	 * Resets the bank and the count of all unit for the current nation playing
+	 */
 	public void resetBuy(){
 		for(Unit u: units) u.resetCount();
 		n.setBank(oldBank);
+	}
+	/**
+	 * Adds the income to the bank of the nation
+	 * who is before the Pacific 
+	 */
+	public void endTurnPacificMain(){
+		for(Nation n: nations){
+			if(n.getName().contains("Pacific")){
+				nations.get(n.getPosition()-1).endTurn();
+			}
+		}
 	}
 	
 	/**

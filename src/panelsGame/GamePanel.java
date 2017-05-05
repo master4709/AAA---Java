@@ -235,6 +235,10 @@ public class GamePanel extends MyPanel{
 		incomeLabel.get(n.getPosition()).setText(n.getTotalIncome().toString());
 	}
 	
+	public void updateAllNInfo(List<Nation> nations){
+		for(Nation n: nations) updateNInfo(n);
+	}
+	
 	/**
 	 * Updates the text of the ecoNation button for the next bank and income of the nation
 	 * @param n - the current ecoNation
