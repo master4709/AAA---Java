@@ -18,17 +18,24 @@ Java 8
 
 How to install and run Axis and Allies Economy
 
+* Jar File
 ```
-Give the example
+ * Download the file name aaa.zip
+ * Extract the contents to a folder on your computer
+ * Double click the file named aaa.jar
 ```
-
-And repeat
-
+* Eclipse
 ```
-until finished
+1. Donload the entire repository
+2. Extract the content to a folder on your computer
+3. Open eclipse and go to File -> Import...
+4. Select General -> Existing Project into Workspace and click Next.
+5. Browse and select the location of the aaa source folder
+6. Ensure aaa-java is selected in the projects window
+7. Press Finish
+8. Browse to src/run/RunAAA.java inside eclipse and open it
+9. Press the green button on the top bar 
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
