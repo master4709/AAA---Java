@@ -20,9 +20,9 @@ How to install and run Axis and Allies Economy
 
 * Jar File
 ```
- * Download the file name aaa.zip
- * Extract the contents to a folder on your computer
- * Double click the file named aaa.jar
+ 1. Download the file name aaa.zip
+ 2. Extract the contents to a folder on your computer
+ 3. Double click the file named aaa.jar
 ```
 * Eclipse
 ```
