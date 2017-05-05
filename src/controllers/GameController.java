@@ -196,10 +196,6 @@ public class GameController implements ActionListener{
 			gp.resetUnitCount();
 			gp.updateNInfo(game.getN());
 			break;
-		case"Reset_Research":
-			game.resetAllResearch();
-			rp.resetAllButtons();
-			break;
 		case"Pacific":
 			game.nextNation();
 			updateGamePanel();
@@ -223,6 +219,10 @@ public class GameController implements ActionListener{
 				i=Integer.parseInt(name.substring(4, name.length()));
 				game.buyUnit(i);
 				gp.buyUnit(game.getUnit(i));
+			}else if(name.contains("reset_")){
+				i=Integer.parseInt(name.substring(6, name.length()));
+				game.resetResearch(i);
+				rp.resetButtons(i);
 			}
 			gp.updateNInfo(game.getEcoN());
 			updateEcoNation();

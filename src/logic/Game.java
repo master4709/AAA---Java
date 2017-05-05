@@ -110,13 +110,11 @@ public class Game {
 	}
 	/**
 	 * Resets all of the research for all nations
-	 * Puts them all to flase
+	 * Puts them all to false
 	 */
-	public void resetAllResearch(){
-		for(Nation n: nations){
-			for(int i=0;i<n.getResearch().size();i++){
-				n.getResearch().set(i, false);
-			}
+	public void resetResearch(int postition){
+		for(int i=0;i<n.getResearch().size();i++){
+			nations.get(postition).getResearch().set(i, false);
 		}
 	}
 	

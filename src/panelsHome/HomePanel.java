@@ -17,7 +17,7 @@ public class HomePanel extends MyPanel{
 	
 	private JButton btnNewGame;
 	private JButton btnContinueGame;
-	private JButton btnCreateGame;
+	private JButton btnEditGame;
 	private JButton btnAbout;
 	
 	private ImageIcon mainImage;
@@ -52,9 +52,9 @@ public class HomePanel extends MyPanel{
 		center.add(btnContinueGame,"cell 1 1,growx");
 		btnContinueGame.setName("ContinueGame");
 		
-		btnCreateGame = new MyButton(packageListener,"Create Game", btnFontSize);
-		center.add(btnCreateGame,"cell 1 2,growx");
-		btnCreateGame.setName("CreateGame");
+		btnEditGame = new MyButton(packageListener,"Edit Game", btnFontSize);
+		center.add(btnEditGame,"cell 1 2,growx");
+		btnEditGame.setName("EditGame");
 		
 		btnAbout = new MyButton(packageListener,"About", btnFontSize);
 		center.add(btnAbout,"cell 1 3,growx");

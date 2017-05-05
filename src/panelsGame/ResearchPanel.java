@@ -18,7 +18,6 @@ public class ResearchPanel extends MyPanel{
 	private JLabel lblTitle;
 	
 	private JButton btnBack;
-	private JButton btnReset;
 	
 	private List<List<JButton>> btnList = new ArrayList<>();
 	
@@ -30,17 +29,26 @@ public class ResearchPanel extends MyPanel{
 	}
 	
 	private void displayNorth(){
-		lblTitle = new MyLabel("Research",nationFontSize*3/2);
+		lblTitle = new MyLabel("Research",nationFontSize);
 		north.add(lblTitle,"cell 0 0,alignx center");
 	}
 	
 	public void displayCenter(List<Nation> nations, List<Research> research){
 		center.setLayout(new MigLayout("insets 0,gapy 0","[50]","[50]"));
 		List<JButton> list;
+		String name;
 		for(Nation n: nations){
 			list = new ArrayList<>();
 			if(!n.getName().contains("Pacific")){
-				String name = n.getName().substring(0,3);
+				if(n.getName().length()>3){
+					name = n.getName().substring(0,4);
+				}else if(n.getName().length()>2){
+					name = n.getName().substring(0,3);
+				}else if(n.getName().length()>1){
+					name = n.getName().substring(0,2);
+				}else{
+					name = n.getName().substring(0,1);
+				}
 				for(int y=0;y<12;y++){
 					JButton btn = new MyButton(packageListener,name,unitFontSize,ColorUtil.white);
 					center.add(btn,"cell "+n.getPosition()+" "+y+",growx,growy");
@@ -50,6 +58,9 @@ public class ResearchPanel extends MyPanel{
 					}
 					list.add(btn);
 				}
+				JButton btnReset = new MyButton(packageListener,"Reset",unitFontSize,n.getColor());
+				center.add(btnReset,"cell "+n.getPosition()+" 12,growx,growy");
+				btnReset.setName("reset_"+n.getPosition());
 			}
 			btnList.add(list);
 		}
@@ -70,23 +81,15 @@ public class ResearchPanel extends MyPanel{
 		btnBack = new MyButton(packageListener,"Back",nationInfoFontSize);
 		south.add(btnBack,"cell 0 0, aligny bottom");
 		btnBack.setName("Back");
-		
-		btnReset = new MyButton(packageListener,"Reset",nationInfoFontSize);
-		south.add(btnReset,"cell 1 0,aligny bottom");
-		btnReset.setName("Reset_Research");
 	}
 	
 	public void setButtonPressed(int nation, int position, Color c){
 		btnList.get(nation).get(position).setBackground(c);
 	}
 	
-	public void resetAllButtons(){
-		for(List<JButton> list:btnList){
-			for(JButton btn: list){
-				btn.setBackground(ColorUtil.white);
-			}
+	public void resetButtons(int position){
+		for(JButton btn: btnList.get(position)){
+			btn.setBackground(ColorUtil.white);
 		}
 	}
-	
-	
 }

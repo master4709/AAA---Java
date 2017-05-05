@@ -23,7 +23,7 @@ import myJStuff.*;
 import net.miginfocom.swing.MigLayout;
 import util.ColorUtil;
 
-public class CreateGamePanel extends MyPanel{
+public class EditGamePanel extends MyPanel{
 	
 	private JLabel lblTitle;
 	
@@ -51,7 +51,7 @@ public class CreateGamePanel extends MyPanel{
 	
 	private List<Color> possibleColors = new ArrayList<>();
 	
-	public CreateGamePanel(ActionListener packageListener){
+	public EditGamePanel(ActionListener packageListener){
 		this.packageListener = packageListener;
 		contentPane.setName("CreateGame");
 		

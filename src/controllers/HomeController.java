@@ -29,14 +29,14 @@ public class HomeController implements ActionListener{
 	private HomePanel hp;
 	private LoadGamePanel lgp;
 	private NewGamePanel ngp;
-	private CreateGamePanel cgp;
+	private EditGamePanel egp;
 	private CreateObjectivesPanel cop;
 	private AboutPanel ap;
 	
 	private JPanel panelHome;
 	private JPanel panelLoadGame;
 	private JPanel panelNewGame;
-	private JPanel panelCreateGame;
+	private JPanel panelEditGame;
 	private JPanel panelCreateObjectives;
 	private JPanel panelAbout;
 	
@@ -62,21 +62,21 @@ public class HomeController implements ActionListener{
 		hp = new HomePanel(this);
 		lgp = new LoadGamePanel(this,this.globalListener);
 		ngp = new NewGamePanel(this,this.globalListener);
-		cgp = new CreateGamePanel(this);
+		egp = new EditGamePanel(this);
 		cop = new CreateObjectivesPanel(this);
 		ap = new AboutPanel(this);
 		
 		panelHome = hp.getContentPane();
 		panelNewGame = ngp.getContentPane();
 		panelLoadGame = lgp.getContentPane();
-		panelCreateGame = cgp.getContentPane();
+		panelEditGame = egp.getContentPane();
 		panelCreateObjectives = cop.getContentPane();
 		panelAbout = ap.getContentPane();
 		
 		nationTotal = 0;
 		selection = -1;
 		
-		cgp.createNation(nationTotal);
+		egp.createNation(nationTotal);
 		cop.addNObjective();
 		switchPanel(panelHome);
 		
@@ -146,8 +146,8 @@ public class HomeController implements ActionListener{
 		case"ContinueGame":
 			switchLoadPanel();
 			break;
-		case"CreateGame":
-			switchPanel(panelCreateGame);
+		case"EditGame":
+			switchPanel(panelEditGame);
 			break;
 		case"About":
 			switchPanel(panelAbout);
@@ -182,19 +182,19 @@ public class HomeController implements ActionListener{
 			break;
 		case"Add_CreateGame":
 			nationTotal++;
-			cgp.createNation(nationTotal);
+			egp.createNation(nationTotal);
 			cop.addNObjective();
 			frame.repaint();
 			break;
 		case"Reset_CreateGame":
 			nationTotal = 0;
-			cgp.reset();
+			egp.reset();
 			frame.repaint();
 			break;
 		case"Add_CreateObjectives":
 			break;
 		case"Back_CreateObjectives":
-			switchPanel(panelCreateGame);
+			switchPanel(panelEditGame);
 			break;
 		case"Reset_ObjectiveCreate":
 			break;
@@ -209,7 +209,7 @@ public class HomeController implements ActionListener{
 				gameFolder = source.getText();
 			}else if(name.contains("Objective_")){
 				selection = Integer.parseInt(name.substring(10, name.length()));
-				cop.setNation(cgp.getNName(selection), cgp.getNColor(selection), selection);
+				cop.setNation(egp.getNName(selection), egp.getNColor(selection), selection);
 				switchPanel(panelCreateObjectives);
 			}else if(name.contains("Remove_CreateGame_")){
 				nationTotal--;
@@ -219,7 +219,7 @@ public class HomeController implements ActionListener{
 					selection = Integer.parseInt(name.substring(18, name.length()));
 					System.out.println("Nation Removed: " +(selection));
 					System.out.println("Nation Total: " +(nationTotal));
-					cgp.removeNation(selection);
+					egp.removeNation(selection);
 					cop.removeNObjective(selection);
 					frame.validate();
 					frame.repaint();
