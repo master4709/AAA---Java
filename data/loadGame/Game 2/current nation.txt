@@ -1,2 +1,0 @@
-position: 1
-round: 4

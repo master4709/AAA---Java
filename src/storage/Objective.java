@@ -55,7 +55,7 @@ public class Objective implements Serializable{
 	}
 	
 	public String toString(){
-		return " "+amount+" IPCs |"+text;
+		return " "+amount+" IPC | "+text;
 	}
 	
 	public String save(){

@@ -162,7 +162,7 @@ public class Nation implements Serializable{
 	private String  getObjectivesString(){
 		String s = "";
 		for(Objective o: nationalObj){
-			s+="obj: "+o.isEnabled().toString()+" "+o.getAmount()+" "+o.getText()+"\n";
+			s+=o.save()+"\n";
 		}return s;
 	}
 }

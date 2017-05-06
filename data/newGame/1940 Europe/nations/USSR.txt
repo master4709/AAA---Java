@@ -1,0 +1,9 @@
+position: 2
+color: red
+bank: 28
+income: 28
+research: false false false false false false false false false false false false
+obj: false 9 USSR controls Novosibirsk
+obj: false 5 Sea zone 125 is free of Axis Warships, Archangel controlled by USSR
+obj: false 5 No Allied units in original USSR territories
+obj: false 10 First time USSR capture Germany (Berlin)
