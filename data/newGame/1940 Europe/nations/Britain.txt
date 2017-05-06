@@ -1,5 +1,5 @@
 position: 4
-color: beige
+color: tan
 bank: 30
 income: 30
 research: false false false false false false false false false false false false

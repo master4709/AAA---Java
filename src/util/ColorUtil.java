@@ -85,7 +85,7 @@ public class ColorUtil {
 			c = (Color)field.get(null);
 		} catch (Exception e){
 			System.out.println("No Color found with name: "+color);
-			c = null;
+			c = white;
 		}
 		return c;
 	}
@@ -97,7 +97,7 @@ public class ColorUtil {
 			c = (Color)field.get(null);
 		} catch (Exception e){
 			System.out.println("No Color found with name: "+color);
-			c = null;
+			c = white;
 		}
 		return c;
 	}
