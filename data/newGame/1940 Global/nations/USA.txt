@@ -1,0 +1,11 @@
+position: 4
+color: green
+bank: 52
+income: 52
+research_1: false false false false false false false false false false false false
+obj: false 10 USA controls: Eastern United States, Central United States, Western United States
+obj: false 5 USA controls: Alaska, Aleutian Islands, Hawaiian Islands, Johnston Island, and Line Islands
+obj: false 5 USA controls: Mexicom South Eastern Mexico, Central America, and West Indies
+obj: false 5 USA controls the Philippines
+obj: false 5 USA is at war with all Axis powers
+obj: false 5 There is at least one U.S.A. land unit in France

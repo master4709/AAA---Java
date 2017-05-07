@@ -1,0 +1,5 @@
+position: 2
+color: red
+bank: 24
+income: 24
+research: false false false false false false false false false false false false

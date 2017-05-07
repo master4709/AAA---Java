@@ -1,0 +1,6 @@
+position: 5
+color: green_light
+bank: 12 
+income: 12
+research_1: false false false false false false false false false false false false
+obj: false 6 Burma Road is open, Allies control: India, Burma, Yunnan and Szechwan

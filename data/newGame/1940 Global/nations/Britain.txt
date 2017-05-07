@@ -1,0 +1,7 @@
+position: 6
+color: tan
+bank: 28
+income: 28
+research_1: false false false false false false false false false false false false
+obj: false 5 Britain controls all of its original territories (Must be at war in Europe)
+obj: false 5 No German submarines anuwhere on the board other than sea zones 100,113,114,115
