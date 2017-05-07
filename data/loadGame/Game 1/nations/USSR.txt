@@ -1,0 +1,8 @@
+position: 2
+color: red
+bank: 74
+income: 37
+research: false false false false false false false false false false false false 
+obj: false 5 No Axis warships in sea zone 25 and USSR controls Archangel 
+obj: false 5 No Allied units on any original Russian territories 
+obj: false 10 First time capturing Berlin 
