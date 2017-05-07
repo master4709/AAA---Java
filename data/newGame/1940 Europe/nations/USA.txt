@@ -1,7 +1,0 @@
-position: 3
-color: green
-bank: 35
-income: 35
-research: false false false false false false false false false false false false
-obj: false 20 USA controls: Eastern United States and Central United States
-obj: false 5 USA controls: South Eastern Mexico, Central America, West Indies
